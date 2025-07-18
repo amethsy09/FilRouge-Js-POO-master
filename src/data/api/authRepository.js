@@ -76,7 +76,7 @@ export class AuthRepository {
     const newUser = await userResponse.json();
 
     // Création du profil admin/client
-    const roleEndpoint = userData.roleId === "1" ? "admin" : "clients";
+    const roleEndpoint = userData.roleId === "1" ? "admin" : "client";
 
     await fetch(`${this.BASE_URL}/${roleEndpoint}`, {
       method: "POST",

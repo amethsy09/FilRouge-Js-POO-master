@@ -92,7 +92,7 @@ export default class ArticleScreen {
     const start = (this.state.page - 1) * this.state.perPage;
 
     this.state.articles.forEach((article, idx) => {
-      console.log(article);
+      // console.log(article);
 
       const category = this.state.categories.find(
         (c) => c.id === article.categoryId

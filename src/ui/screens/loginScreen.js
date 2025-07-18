@@ -28,12 +28,7 @@ export default class LoginScreen {
           <button type="submit" class="w-full px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700">
             Se connecter
           </button>
-          
-          <div class="text-center mt-4">
-            <a href="#auth/register" class="text-indigo-600 hover:underline">
-              Créer un compte
-            </a>
-          </div>
+         
           
           <p id="form-error" class="text-red-600 text-center text-sm hidden"></p>
         </form>
