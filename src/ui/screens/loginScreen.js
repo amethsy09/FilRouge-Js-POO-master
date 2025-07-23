@@ -86,7 +86,7 @@ export default class LoginScreen {
 
       try {
         const user = await this.authSvc.login(email, password);
-        switch (user.roleId) {
+        switch (user.id_role) {
           case "1":
             window.location.hash = "#admin";
             break;

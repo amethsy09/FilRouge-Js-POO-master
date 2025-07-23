@@ -2,7 +2,7 @@
   "categories": [
     {
       "id": "1",
-      "libelle": "Informatiqueeeeeeeeeee",
+      "libelle": "Informatique",
       "deleted": false
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "id": "1ad2",
-      "libelle": "Moooodeee",
+      "libelle": "Mode",
       "deleted": true
     }
   ],
@@ -56,77 +56,90 @@
     },
     {
       "id": "f333",
-      "libelle": "clavier",
-      "description": "permet d''interagir avec le navigateur",
-      "prix": 150000,
+      "libelle": "Clavier",
+      "description": "Permet d'interagir avec l'ordinateur",
+      "prix": 50,
       "image": "https://pikaso.cdnpk.net/public/production/prompt-templates/212.png?preview=1",
       "categoryId": "1",
-      "stock": 0,
+      "stock": 10,
       "deleted": false
     }
   ],
   "utilisateurs": [
     {
       "id": "1",
-      "nom": "Dupont",
+      "nom": "diop",
       "prenom": "Jean",
       "email": "jean@gmail.com",
       "password": "password123",
       "id_role": "3",
-      "photo": "https://pikaso.cdnpk.net/public/production/prompt-templates/209.jpeg?preview=1"
+      "photo": "https://pikaso.cdnpk.net/public/production/prompt-templates/209.jpeg?preview=1",
+      "telephone": "0612345678"
     },
     {
       "id": "2",
       "nom": "Martin",
       "prenom": "Marie",
-      "email": "marin@gmail.com",
+      "email": "marie@gmail.com",
       "password": "password456",
       "id_role": "2",
-      "photo": "https://pikaso.cdnpk.net/public/production/prompt-templates/209.jpeg?preview=1"
+      "photo": "https://pikaso.cdnpk.net/public/production/prompt-templates/209.jpeg?preview=1",
+      "telephone": "0698765432"
     },
     {
       "id": "3",
       "nom": "Ousmane",
-      "prenom": "lo",
+      "prenom": "Lo",
       "email": "admin@admin.com",
       "password": "admin",
       "id_role": "1",
-      "photo": "https://pikaso.cdnpk.net/public/production/prompt-templates/209.jpeg?preview=1"
+      "photo": "https://pikaso.cdnpk.net/public/production/prompt-templates/209.jpeg?preview=1",
+      "telephone": "0600000000"
     },
     {
       "id": "65ca",
       "nom": "Ndiaye",
       "prenom": "Alpha",
       "email": "m.sow@ecole221.com",
-      "password": "liverpool",
+      "password": "password789",
       "id_role": "3",
-      "photo": "https://pikaso.cdnpk.net/public/production/prompt-templates/209.jpeg?preview=1"
+      "photo": "https://pikaso.cdnpk.net/public/production/prompt-templates/209.jpeg?preview=1",
+      "telephone": "0611111111"
     },
     {
       "id": "b2a1",
-      "nom": "sy",
-      "prenom": "mouhamed",
+      "nom": "Sy",
+      "prenom": "Mouhamed",
       "email": "mouhamedsy2221@gmail.com",
       "password": "aichaly7654321",
       "id_role": "3",
-      "photo": "https://pikaso.cdnpk.net/public/production/prompt-templates/209.jpeg?preview=1"
+      "photo": "https://pikaso.cdnpk.net/public/production/prompt-templates/209.jpeg?preview=1",
+      "telephone": "0622222222"
     },
     {
       "id": "cc80",
-      "nom": "sy",
-      "prenom": "aminata ",
+      "nom": "Diop",
+      "prenom": "Aminata",
       "email": "aminata2221@gmail.com",
-      "password": "aichaly",
-      "id_role": "3",
-      "photo": "https://pikaso.cdnpk.net/public/production/prompt-templates/209.jpeg?preview=1"
+      "password": "password000",
+      "id_role": "2",
+      "photo": "https://pikaso.cdnpk.net/public/production/prompt-templates/209.jpeg?preview=1",
+      "telephone": "0633333333"
     },
     {
       "id": "43c1",
-      "nom": "sy",
-      "prenom": "mouhamed",
+      "nom": "Sy",
+      "prenom": "Mouhamed",
       "email": "mouhamedsy2221@gmail.com",
-      "telephone": "773632963",
       "password": "client123",
+      "id_role": "2",
+      "telephone": "773632963"
+    },
+    {
+      "id": "dce9",
+      "nom": "NGOM",
+      "prenom": "PAPE",
+      "telephone": "+221763103176",
       "id_role": "2"
     }
   ],
@@ -153,11 +166,30 @@
   "clients": [
     {
       "id": "1",
-      "id_utilisateur": "2"
+      "id_utilisateur": "2",
+      "solde": 0,
+      "creditMax": 500,
+      "createdAt": "2025-01-01T00:00:00.000Z"
     },
     {
-      "id": "08d9",
-      "id_utilisateur": "43c1"
+      "id": "2",
+      "id_utilisateur": "43c1",
+      "solde": 0,
+      "creditMax": 300,
+      "createdAt": "2025-02-01T00:00:00.000Z"
+    },
+    {
+      "id": "3",
+      "id_utilisateur": "cc80",
+      "solde": 0,
+      "creditMax": 400,
+      "createdAt": "2025-03-01T00:00:00.000Z"
+    },
+    {
+      "id": "07a1",
+      "id_utilisateur": "dce9",
+      "solde": 0,
+      "creditMax": 0
     }
   ],
   "boutiquiers": [
@@ -167,35 +199,76 @@
         "lat": 48.8566,
         "lng": 2.3522
       },
-      "id_utilisateur": "3"
+      "id_utilisateur": "3",
+      "boutiqueNom": "Tech Store",
+      "createdAt": "2025-01-01T00:00:00.000Z"
     },
     {
-      "id": "6bb6",
-      "id_utilisateur": "65ca",
+      "id": "2",
       "localisation": {
         "lat": 90,
-        "lng": 45
-      }
+        "lng": 44
+      },
+      "id_utilisateur": "65ca",
+      "boutiqueNom": "Fashion Shop",
+      "createdAt": "2025-02-01T00:00:00.000Z",
+      "deletedAt": "2025-07-22T23:15:20.284Z"
     },
     {
-      "id": "84da",
-      "id_utilisateur": "b2a1",
+      "id": "3",
       "localisation": {
         "lat": 90,
         "lng": 180
-      }
+      },
+      "id_utilisateur": "b2a1",
+      "boutiqueNom": "Electro World",
+      "deletedAt": "2025-07-18T12:02:06.915Z",
+      "createdAt": "2025-03-01T00:00:00.000Z"
     },
     {
-      "id": "618e",
-      "id_utilisateur": "cc80",
+      "id": "c0aa",
+      "nom": "sy",
+      "prenom": "mouhamed",
+      "email": "mouhamedsy2221@gmail.com",
+      "telephone": "773632963",
+      "boutiqueNom": "Rassoul shop",
       "localisation": {
         "lat": 40,
         "lng": 180
-      }
+      },
+      "password": "1234567"
     }
   ],
-  
   "dettes": [
-    
+    {
+      "id": "1",
+      "clientId": "43c1",
+      "boutiquierId": "1",
+      "articleId": "1",
+      "montant": 500,
+      "raison": "Achat ordinateur",
+      "statut": "active",
+      "createdAt": "2025-07-20T10:00:00Z"
+    }
+  ],
+  "demandeDettes": [
+    {
+      "id": "1",
+      "clientId": "43c1",
+      "articleId": "2",
+      "montant": 50,
+      "raison": "Achat vêtement",
+      "statut": "pending",
+      "createdAt": "2025-07-20T09:00:00Z"
+    },
+    {
+      "id": "1005",
+      "articleId": "2",
+      "articleLibelle": "T-shirt",
+      "montant": 20,
+      "raison": "je voudrais avoir cette article",
+      "statut": "pending",
+      "createdAt": "2025-07-20T19:13:58.711Z"
+    }
   ]
 }

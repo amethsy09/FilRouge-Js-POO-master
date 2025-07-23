@@ -9,25 +9,26 @@ const routes = {
   "#auth/login": () => import("./ui/screens/LoginScreen.js"),
   "#auth/register": () => import("./ui/screens/RegisterScreen.js"),
   
+  // Admin
+  "#admin": () => import("./ui/screens/AdminDashboardScreen.js"),
+  
   // Catégories et Articles
   "#categories": () => import("./ui/screens/CategoryScreen.js"),
   "#articles": () => import("./ui/screens/ArticleScreen.js"),
   "#articles/(\\w+)": () => import("./ui/screens/ArticleDetailScreen.js"),
   
   // Boutiquiers
-   "#boutiquier": () => import("./ui/screens/BoutiquierDashboardScreen.js"), // Dashboard boutiquier
+  "#boutiquier": () => import("./ui/screens/BoutiquierDashboardScreen.js"),
   "#boutiquiers/:id": () => import("./ui/screens/BoutiquierDetailsScreen.js"),
   
-  // Clients (nouveaux écrans)
-  "#client": () => import("./ui/screens/client/ClientDashboardScreen.js"),
-  "#client": () => import("./ui/screens/ClientsListScreen.js"),
+  // Clients
+  "#client": () => import("./ui/screens/ClientDashboardScreen.js"),
+  "#client/articles": () => import("./ui/screens/ClientArticlesScreen.js"),
+  "#clients": () => import("./ui/screens/ClientsListScreen.js"),
   "#client/add": () => import("./ui/screens/AddClientScreen.js"),
   "#client/(\\w+)": () => import("./ui/screens/client/ClientDetailScreen.js"),
   
-  // Admin
-  "#admin": () => import("./ui/screens/AdminDashboardScreen.js"),
-  
-  // Fallback pour les routes inconnues
+  // Fallback
   "#not-found": () => import("./ui/screens/NotFoundScreen.js")
 };
 
