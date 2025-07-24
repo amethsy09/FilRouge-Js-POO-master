@@ -210,7 +210,7 @@ export default class BoutiquierClientsScreen {
     `;
   }
 
-  _renderCardsView() {
+_renderCardsView() {
     return `
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         ${this.state.clients
@@ -222,13 +222,18 @@ export default class BoutiquierClientsScreen {
               : "hover:shadow-md"
           }">
             <div class="bg-indigo-100 p-4 flex items-center">
-              <div class="bg-white rounded-full h-12 w-12 flex items-center justify-center shadow-sm mr-3">
-                <i class="fas fa-user text-indigo-600"></i>
+              <div class="rounded-full h-12 w-12 flex items-center justify-center shadow-sm mr-3 overflow-hidden">
+                ${
+                  client.imageUrl
+                    ? `<img src="${config.apiUrl}/${client.imageUrl}" alt="${client.prenom} ${client.nom}" class="h-full w-full object-cover">`
+                    : `<div class="bg-white h-full w-full flex items-center justify-center">
+                         <i class="fas fa-user text-indigo-600"></i>
+                       </div>`                       
+                }
+                
               </div>
               <div>
-                <h3 class="font-bold text-lg">${client.prenom} ${
-              client.nom
-            }</h3>
+                <h3 class="font-bold text-lg">${client.prenom} ${client.nom}</h3>
                 <p class="text-gray-600">${client.telephone}</p>
               </div>
             </div>
@@ -237,15 +242,11 @@ export default class BoutiquierClientsScreen {
               <div class="grid grid-cols-2 gap-4 mb-3">
                 <div class="bg-green-50 p-2 rounded text-center">
                   <p class="text-xs text-gray-500">Solde</p>
-                  <p class="font-bold text-green-600">${client.solde.toFixed(
-                    2
-                  )} €</p>
+                  <p class="font-bold text-green-600">${client.solde.toFixed(2)} €</p>
                 </div>
                 <div class="bg-red-50 p-2 rounded text-center">
                   <p class="text-xs text-gray-500">Dette</p>
-                  <p class="font-bold text-red-600">${client.dette.toFixed(
-                    2
-                  )} €</p>
+                  <p class="font-bold text-red-600">${client.dette.toFixed(2)} €</p>
                 </div>
               </div>
               
@@ -255,46 +256,46 @@ export default class BoutiquierClientsScreen {
                 } mr-1"></i>
                 ${
                   client.deletedAt
-                    ? `Supprimé le ${new Date(
-                        client.deletedAt
-                      ).toLocaleDateString()}`
-                    : `Créé le ${new Date(
-                        client.createdAt
-                      ).toLocaleDateString()}`
+                    ? `Supprimé le ${new Date(client.deletedAt).toLocaleDateString()}`
+                    : `Créé le ${new Date(client.createdAt).toLocaleDateString()}`
                 }
               </p>
               
               <div class="flex justify-end space-x-2 mt-4">
                 <button class="btn-action ${this.buttonStyles.base} ${
-              this.buttonStyles.sizes.sm
-            } ${
-              this.buttonStyles.variants.ghost
-            } text-indigo-600 hover:text-indigo-900" 
-                        data-action="view" data-id="${
-                          client.id
-                        }" title="Voir détails">
+      this.buttonStyles.sizes.sm
+    } ${
+      this.buttonStyles.variants.ghost
+    } text-indigo-600 hover:text-indigo-900" 
+                        data-action="view" data-id="${client.id}" title="Voir détails">
                   <i class="fas fa-eye"></i>
                 </button>
                 <button class="btn-action ${this.buttonStyles.base} ${
-              this.buttonStyles.sizes.sm
-            } ${
-              this.buttonStyles.variants.ghost
-            } text-gray-600 hover:text-gray-900" 
-                        data-action="edit" data-id="${
-                          client.id
-                        }" title="Modifier">
+      this.buttonStyles.sizes.sm
+    } ${
+      this.buttonStyles.variants.ghost
+    } text-gray-600 hover:text-gray-900" 
+                        data-action="edit" data-id="${client.id}" title="Modifier">
                   <i class="fas fa-edit"></i>
                 </button>
                 ${
                   client.deletedAt
                     ? `
-                  <button class="btn-action ${this.buttonStyles.base} ${this.buttonStyles.sizes.sm} ${this.buttonStyles.variants.ghost} text-green-600 hover:text-green-900" 
+                  <button class="btn-action ${this.buttonStyles.base} ${
+                        this.buttonStyles.sizes.sm
+                      } ${
+                        this.buttonStyles.variants.ghost
+                      } text-green-600 hover:text-green-900" 
                           data-action="restore" data-id="${client.id}" title="Restaurer">
                     <i class="fas fa-trash-restore"></i>
                   </button>
                 `
                     : `
-                  <button class="btn-action ${this.buttonStyles.base} ${this.buttonStyles.sizes.sm} ${this.buttonStyles.variants.ghost} text-red-600 hover:text-red-900" 
+                  <button class="btn-action ${this.buttonStyles.base} ${
+                        this.buttonStyles.sizes.sm
+                      } ${
+                        this.buttonStyles.variants.ghost
+                      } text-red-600 hover:text-red-900" 
                           data-action="delete" data-id="${client.id}" title="Supprimer">
                     <i class="fas fa-trash"></i>
                   </button>
@@ -303,7 +304,11 @@ export default class BoutiquierClientsScreen {
                 ${
                   !client.deletedAt
                     ? `
-                  <button class="btn-action ${this.buttonStyles.base} ${this.buttonStyles.sizes.sm} ${this.buttonStyles.variants.ghost} text-yellow-600 hover:text-yellow-900" 
+                  <button class="btn-action ${this.buttonStyles.base} ${
+                        this.buttonStyles.sizes.sm
+                      } ${
+                        this.buttonStyles.variants.ghost
+                      } text-yellow-600 hover:text-yellow-900" 
                           data-action="debt" data-id="${client.id}" title="Gérer dette">
                     <i class="fas fa-hand-holding-usd"></i>
                   </button>
@@ -318,14 +323,14 @@ export default class BoutiquierClientsScreen {
           .join("")}
       </div>
     `;
-  }
-
-  _renderTableView() {
+}
+ _renderTableView() {
     return `
       <div class="bg-white shadow rounded-lg overflow-hidden">
         <table class="min-w-full divide-y divide-gray-200">
           <thead class="bg-gray-50">
             <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Photo</th>
               <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom</th>
               <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Téléphone</th>
               <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Solde</th>
@@ -338,20 +343,20 @@ export default class BoutiquierClientsScreen {
             ${this.state.clients
               .map(
                 (client) => `
-              <tr class="${
-                client.deletedAt ? "bg-gray-50" : "hover:bg-gray-50"
-              }">
+              <tr class="${client.deletedAt ? "bg-gray-50" : "hover:bg-gray-50"}">
                 <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex items-center">
-                    <div class="flex-shrink-0 h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center">
-                      <i class="fas fa-user text-indigo-600"></i>
-                    </div>
-                    <div class="ml-4">
-                      <div class="font-medium text-gray-900">${client.prenom} ${
-                  client.nom
-                }</div>
-                    </div>
+                  <div class="flex-shrink-0 h-10 w-10 rounded-full overflow-hidden">
+                    ${
+                      client.imageUrl
+                        ? `<img src="${config.apiUrl}/${client.imageUrl}" alt="${client.prenom} ${client.nom}" class="h-full w-full object-cover">`
+                        : `<div class="bg-indigo-100 h-full w-full flex items-center justify-center">
+                             <i class="fas fa-user text-indigo-600"></i>
+                           </div>`
+                    }
                   </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="font-medium text-gray-900">${client.prenom} ${client.nom}</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   ${client.telephone}
@@ -387,9 +392,7 @@ export default class BoutiquierClientsScreen {
                 } ${
                   this.buttonStyles.variants.ghost
                 } text-indigo-600 hover:text-indigo-900 mr-2" 
-                          data-action="view" data-id="${
-                            client.id
-                          }" title="Voir détails">
+                          data-action="view" data-id="${client.id}" title="Voir détails">
                     <i class="fas fa-eye"></i>
                   </button>
                   <button class="btn-action ${this.buttonStyles.base} ${
@@ -397,15 +400,17 @@ export default class BoutiquierClientsScreen {
                 } ${
                   this.buttonStyles.variants.ghost
                 } text-gray-600 hover:text-gray-900 mr-2" 
-                          data-action="edit" data-id="${
-                            client.id
-                          }" title="Modifier">
+                          data-action="edit" data-id="${client.id}" title="Modifier">
                     <i class="fas fa-edit"></i>
                   </button>
                   ${
                     !client.deletedAt
                       ? `
-                    <button class="btn-action ${this.buttonStyles.base} ${this.buttonStyles.sizes.sm} ${this.buttonStyles.variants.ghost} text-yellow-600 hover:text-yellow-900 mr-2" 
+                    <button class="btn-action ${this.buttonStyles.base} ${
+                          this.buttonStyles.sizes.sm
+                        } ${
+                          this.buttonStyles.variants.ghost
+                        } text-yellow-600 hover:text-yellow-900 mr-2" 
                             data-action="debt" data-id="${client.id}" title="Gérer dette">
                       <i class="fas fa-hand-holding-usd"></i>
                     </button>
@@ -415,13 +420,21 @@ export default class BoutiquierClientsScreen {
                   ${
                     client.deletedAt
                       ? `
-                    <button class="btn-action ${this.buttonStyles.base} ${this.buttonStyles.sizes.sm} ${this.buttonStyles.variants.ghost} text-green-600 hover:text-green-900" 
+                    <button class="btn-action ${this.buttonStyles.base} ${
+                          this.buttonStyles.sizes.sm
+                        } ${
+                          this.buttonStyles.variants.ghost
+                        } text-green-600 hover:text-green-900" 
                             data-action="restore" data-id="${client.id}" title="Restaurer">
                       <i class="fas fa-trash-restore"></i>
                     </button>
                   `
                       : `
-                    <button class="btn-action ${this.buttonStyles.base} ${this.buttonStyles.sizes.sm} ${this.buttonStyles.variants.ghost} text-red-600 hover:text-red-900" 
+                    <button class="btn-action ${this.buttonStyles.base} ${
+                          this.buttonStyles.sizes.sm
+                        } ${
+                          this.buttonStyles.variants.ghost
+                        } text-red-600 hover:text-red-900" 
                             data-action="delete" data-id="${client.id}" title="Supprimer">
                       <i class="fas fa-trash"></i>
                     </button>
@@ -436,9 +449,8 @@ export default class BoutiquierClientsScreen {
         </table>
       </div>
     `;
-  }
-
-  _renderClientForm(client = null) {
+}
+_renderClientForm(client = null) {
     const isEdit = !!client;
     const form = document.createElement("form");
     form.className = "space-y-4";
@@ -446,65 +458,80 @@ export default class BoutiquierClientsScreen {
     form.innerHTML = `
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Nom</label>
-          <input type="text" name="nom" value="${client?.nom || ""}"
+          <label class="block text-sm font-medium text-gray-700 mb-1">Nom *</label>
+          <input type="text" name="nom" value="${client?.nom || ''}" required
                  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
           <p id="nom-error" class="error-message text-red-600 text-sm mt-1 hidden"></p>
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Prénom</label>
-          <input type="text" name="prenom" value="${client?.prenom || ""}"
+          <label class="block text-sm font-medium text-gray-700 mb-1">Prénom *</label>
+          <input type="text" name="prenom" value="${client?.prenom || ''}" required
                  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
           <p id="prenom-error" class="error-message text-red-600 text-sm mt-1 hidden"></p>
         </div>
       </div>
       
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Téléphone</label>
-        <input type="tel" name="telephone" value="${client?.telephone || ""}"
+        <label class="block text-sm font-medium text-gray-700 mb-1">Téléphone *</label>
+        <input type="tel" name="telephone" value="${client?.telephone || ''}" required
                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
         <p id="telephone-error" class="error-message text-red-600 text-sm mt-1 hidden"></p>
       </div>
       
-      ${
-        isEdit
-          ? `
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Photo du client</label>
+        <div class="flex items-center gap-4">
+          <label for="client-image" class="cursor-pointer">
+            <div class="relative">
+              <div class="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border-2 border-dashed border-gray-300 hover:border-indigo-500 transition-colors">
+                ${client?.imageUrl ? `
+                  <img src="${client.imageUrl}" alt="Photo actuelle" class="w-full h-full object-cover">
+                ` : `
+                  <i class="fas fa-camera text-gray-400 text-xl"></i>
+                `}
+              </div>
+              <input type="file" id="client-image" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+            </div>
+          </label>
+          <div class="flex-1">
+            <p class="text-sm text-gray-500 mb-1">Formats acceptés : JPG, PNG (max 5MB)</p>
+            <p id="image-error" class="error-message text-red-600 text-sm hidden"></p>
+            ${client?.imageUrl ? `
+              <button type="button" id="btn-remove-image" class="text-red-600 text-sm hover:text-red-800">
+                <i class="fas fa-trash mr-1"></i> Supprimer la photo
+              </button>
+            ` : ''}
+          </div>
+        </div>
+      </div>
+      
+      ${isEdit ? `
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Solde (€)</label>
-            <input type="number" step="0.01" name="solde" value="${
-              client?.solde || 0
-            }"
+            <input type="number" step="0.01" name="solde" value="${client?.solde || 0}"
                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
           </div>
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Dette (€)</label>
-            <input type="number" step="0.01" name="dette" value="${
-              client?.dette || 0
-            }"
+            <label class="block text-sm font-medium text-gray-700 mb-1">Crédit max (€)</label>
+            <input type="number" step="0.01" name="creditMax" value="${client?.creditMax || 0}"
                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
           </div>
         </div>
-      `
-          : ""
-      }
+      ` : ''}
       
       <div class="pt-4 flex justify-end space-x-3">
         <button type="button" id="btn-cancel" 
-                class="${this.buttonStyles.base} ${
-      this.buttonStyles.sizes.md
-    } ${this.buttonStyles.variants.secondary}">
+                class="${this.buttonStyles.base} ${this.buttonStyles.sizes.md} ${this.buttonStyles.variants.secondary}">
           Annuler
         </button>
-        <button type="submit" 
-                class="${this.buttonStyles.base} ${
-      this.buttonStyles.sizes.md
-    } ${this.buttonStyles.variants.primary}">
+        <button type="submit" id="btn-submit"
+                class="${this.buttonStyles.base} ${this.buttonStyles.sizes.md} ${this.buttonStyles.variants.primary}">
           ${isEdit ? "Mettre à jour" : "Enregistrer"}
         </button>
       </div>
       
-      <p id="form-error" class="text-red-600 text-center text-sm hidden"></p>
+      <div id="form-status" class="hidden"></div>
     `;
 
     const modal = new Modal(
@@ -513,45 +540,113 @@ export default class BoutiquierClientsScreen {
     );
     modal.open();
 
-    form
-      .querySelector("#btn-cancel")
-      .addEventListener("click", () => modal.close());
+    // Gestion de l'annulation
+    form.querySelector("#btn-cancel").addEventListener("click", () => modal.close());
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+    // Gestion de la suppression d'image
+    if (client?.imageUrl) {
+      form.querySelector("#btn-remove-image").addEventListener("click", () => {
+        form.querySelector("#client-image").value = "";
+        form.querySelector(".rounded-full img")?.remove();
+        form.querySelector(".rounded-full").innerHTML = '<i class="fas fa-camera text-gray-400 text-xl"></i>';
+        form.querySelector("#btn-remove-image").remove();
+      });
+    }
 
-      if (!this._validateClientForm(form)) {
-        return;
+    // Soumission du formulaire
+   // Dans votre méthode _renderClientForm, modifiez la partie submit:
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  
+  const submitBtn = form.querySelector("#btn-submit");
+  const statusDiv = form.querySelector("#form-status");
+  statusDiv.classList.add("hidden");
+  
+  try {
+    // Validation du formulaire
+    if (!this._validateClientForm(form)) return;
+    
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> En cours...';
+    
+    // Préparation des données de base
+    const formData = {
+      nom: form.querySelector('[name="nom"]').value.trim(),
+      prenom: form.querySelector('[name="prenom"]').value.trim(),
+      telephone: form.querySelector('[name="telephone"]').value.trim(),
+    };
+    
+    if (isEdit) {
+      formData.solde = parseFloat(form.querySelector('[name="solde"]').value) || 0;
+      formData.creditMax = parseFloat(form.querySelector('[name="creditMax"]').value) || 0;
+    }
+    
+    // Gestion de l'image
+    const imageFile = form.querySelector("#client-image").files[0];
+    const removeImage = form.querySelector("#btn-remove-image") && !imageFile;
+    
+    if (removeImage) {
+      // Suppression de l'image existante
+      formData.imageUrl = null;
+    } else if (imageFile) {
+      // Upload de la nouvelle image vers Cloudinary
+      if (imageFile.size > 5 * 1024 * 1024) {
+        throw new Error("La taille de l'image ne doit pas dépasser 5MB");
       }
-
-      const formData = new FormData(form);
-      const clientData = {
-        nom: formData.get("nom"),
-        prenom: formData.get("prenom"),
-        telephone: formData.get("telephone"),
-      };
-
-      if (isEdit) {
-        clientData.solde = parseFloat(formData.get("solde")) || 0;
-        clientData.dette = parseFloat(formData.get("dette")) || 0;
-      }
-
-      try {
-        if (isEdit) {
-          await this.clientSvc.update(client.id, clientData);
-          this._showSuccess("Client mis à jour avec succès");
-        } else {
-          await this.clientSvc.create(clientData);
-          this._showSuccess("Client créé avec succès");
+      
+      // Création d'un FormData pour l'upload
+      const uploadData = new FormData();
+      uploadData.append('file', imageFile);
+      uploadData.append('upload_preset', 'filrouge'); 
+      uploadData.append('cloud_name', 'dkwxpe2zf'); 
+      
+      // Upload vers Cloudinary
+      const cloudinaryResponse = await fetch(
+        `https://api.cloudinary.com/v1_1/dkwxpe2zf/image/upload`, 
+        {
+          method: 'POST',
+          body: uploadData
         }
-        modal.close();
-        await this._loadClients();
-        this.render();
-      } catch (error) {
-        this._showFormError(form, error);
+      );
+      
+      if (!cloudinaryResponse.ok) {
+        throw new Error("Échec de l'upload de l'image");
       }
-    });
+      
+      const cloudinaryData = await cloudinaryResponse.json();
+      formData.imageUrl = cloudinaryData.secure_url;
+    }
+    
+    // Appel du service client
+    let result;
+    if (isEdit) {
+      result = await this.clientSvc.update(client.id, formData);
+    } else {
+      result = await this.clientSvc.create(formData);
+    }
+    
+    // Succès
+    this._showSuccess(
+      isEdit 
+        ? "Client mis à jour avec succès" 
+        : "Client créé avec succès"
+    );
+    modal.close();
+    await this._loadClients();
+    this.render();
+    
+  } catch (error) {
+    console.error("Form submission error:", error);
+    statusDiv.textContent = error.message;
+    statusDiv.className = "text-red-600 text-sm text-center";
+    statusDiv.classList.remove("hidden");
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = isEdit ? "Mettre à jour" : "Enregistrer";
   }
+});
+}
 
 _validateClientForm(form) {
     let isValid = true;
@@ -922,7 +1017,7 @@ _validateClientForm(form) {
     }
   }
 
-  _renderClientDetailsModal(client) {
+_renderClientDetailsModal(client) {
     const modalContent = document.createElement("div");
     modalContent.className = "space-y-4";
 
@@ -930,8 +1025,14 @@ _validateClientForm(form) {
     <div class="bg-white rounded-lg shadow overflow-hidden">
       <div class="bg-indigo-100 p-6">
         <div class="flex items-center">
-          <div class="bg-white rounded-full h-16 w-16 flex items-center justify-center shadow-sm mr-4">
-            <i class="fas fa-user text-indigo-600 text-2xl"></i>
+          <div class="rounded-full h-16 w-16 flex items-center justify-center shadow-sm mr-4 overflow-hidden">
+            ${
+              client.imageUrl
+                ? `<img src="${config.apiUrl}/${client.imageUrl}" alt="${client.prenom} ${client.nom}" class="h-full w-full object-cover">`
+                : `<div class="bg-white h-full w-full flex items-center justify-center">
+                     <i class="fas fa-user text-indigo-600 text-2xl"></i>
+                   </div>`
+            }
           </div>
           <div>
             <h2 class="text-2xl font-bold">${client.prenom} ${client.nom}</h2>
@@ -998,7 +1099,7 @@ _validateClientForm(form) {
       .addEventListener("click", () => {
         modal.close();
       });
-  }
+}
 
   async _handleEditAction(id) {
     try {

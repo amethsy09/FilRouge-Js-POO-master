@@ -146,4 +146,24 @@ export class ClientRepository {
       throw new Error("Échec de l'opération sur la dette");
     }
   }
+  async uploadImage(file, options = {}) {
+    const cloudinaryClient = new CloudinaryClient();
+    return await cloudinaryClient.uploadImage(file, options);
+  }
+  async deleteImage(publicId) {
+    const cloudinaryClient = new CloudinaryClient();
+    return await cloudinaryClient.deleteImage(publicId);
+  }
+  async softDelete(id) {
+    try {
+      return await this._fetchWithAuth(`clients/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify({ deletedAt: new Date().toISOString() }),
+      });
+    } catch (error) {
+      console.error("Soft delete client error:", error);
+      throw new Error("Échec de la suppression douce du client");
+    }
+  }
+
 }

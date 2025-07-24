@@ -94,7 +94,7 @@
       "password": "admin",
       "id_role": "1",
       "photo": "https://pikaso.cdnpk.net/public/production/prompt-templates/209.jpeg?preview=1",
-      "telephone": "0600000000"
+      "telephone": "+221777777777"
     },
     {
       "id": "65ca",
@@ -141,6 +141,22 @@
       "prenom": "PAPE",
       "telephone": "+221763103176",
       "id_role": "2"
+    },
+    {
+      "id": "96e5",
+      "nom": "thiam",
+      "prenom": "ben",
+      "telephone": "+221777777777",
+      "imageUrl": "https://res.cloudinary.com/dkwxpe2zf/image/upload/v1753276649/wujrkuvspu8toalwd90w.jpg",
+      "id_role": "2"
+    },
+    {
+      "id": "8ab9",
+      "nom": "mbodj",
+      "prenom": "malick",
+      "telephone": "+221776293126",
+      "imageUrl": "https://res.cloudinary.com/dkwxpe2zf/image/upload/v1753276938/ybxfvvdmea7hb3zuakrg.png",
+      "id_role": "2"
     }
   ],
   "roles": [
@@ -181,15 +197,44 @@
     {
       "id": "3",
       "id_utilisateur": "cc80",
-      "solde": 0,
-      "creditMax": 400,
+      "solde": 100,
+      "creditMax": 150,
       "createdAt": "2025-03-01T00:00:00.000Z"
     },
     {
       "id": "07a1",
       "id_utilisateur": "dce9",
       "solde": 0,
-      "creditMax": 0
+      "creditMax": 0,
+      "deletedAt": "2025-07-23T13:41:28.239Z"
+    },
+    {
+      "id": "21e4",
+      "id_utilisateur": "85f7",
+      "solde": 0,
+      "creditMax": 0,
+      "deletedAt": "2025-07-23T13:03:41.814Z"
+    },
+    {
+      "id": "56e6",
+      "id_utilisateur": "49ff",
+      "solde": 0,
+      "creditMax": 0,
+      "deletedAt": "2025-07-23T13:10:40.254Z"
+    },
+    {
+      "id": "d03a",
+      "id_utilisateur": "96e5",
+      "solde": 0,
+      "creditMax": 0,
+      "deletedAt": "2025-07-23T13:19:17.583Z"
+    },
+    {
+      "id": "211e",
+      "id_utilisateur": "8ab9",
+      "solde": 0,
+      "creditMax": 0,
+      "deletedAt": "2025-07-23T13:41:32.693Z"
     }
   ],
   "boutiquiers": [

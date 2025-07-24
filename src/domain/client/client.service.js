@@ -4,6 +4,7 @@ export class ClientService {
   constructor(repository) {
     this.repo = repository = new ClientRepository();
   }
+  
 
   async list(showDeleted = false) {
     try {
@@ -26,7 +27,7 @@ export class ClientService {
 
   async create(client) {
     // Validation basique
-    if (!client?.nom || !client?.telephone) {
+    if (!client?.nom || !client?.telephone ) {
       throw new Error("Nom et téléphone sont obligatoires");
     }
     try {
@@ -72,4 +73,5 @@ export class ClientService {
       throw new Error("Échec de la gestion de la dette");
     }
   }
+
 }

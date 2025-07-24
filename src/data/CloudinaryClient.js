@@ -1,12 +1,10 @@
-import { activeConfig } from '../utils/config.js';
-
+import { config } from "../utils/config.js";
 
 export class CloudinaryClient {
   constructor() {
-    const { cloudName,uploadPreset, folder } = activeConfig.cloudinary;
+    const { cloudName, uploadPreset, folder } = config.cloudinary;
    
     this.cloudName = cloudName;
-    // this.apiKey = apiKey;
     this.uploadPreset = uploadPreset;
     this.folder = folder;
     this.uploadUrl = `https://api.cloudinary.com/v1_1/${this.cloudName}/image/upload`;
